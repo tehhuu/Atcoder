@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# ABCテンプレを作成
+
 read NAME
 
 mkdir $NAME
