@@ -1,14 +1,15 @@
 #!/bin/sh
 
 << COMMENTOUT
-Ex) abc 13 b
-./ABC/13 に 13-B.py を作成 → 開く → テンプレ記入
+source makefile.sh $1 $2 $3
+Ex)abc 13 b
+./ABC/13 に移動 → 13-B.py を作成 → 開く → テンプレ記入
 Ex) arc 13 b
-./ARC/ARC13 に ARC13-B.py を作成 → 開く → テンプレ記入
+./ARC/ARC13 に移動 → ARC13-B.py を作成 → 開く → テンプレ記入
 Ex) agc 13 b
-./ARC/AGC13 に AGC13-B.py を作成 → 開く → テンプレ記入
-Ex) edc (なんでもOK) b
-./Others/EDC/に EDC-B.py を作成 → 開く → テンプレ記入
+./ARC/AGC13 に移動 → AGC13-B.py を作成 → 開く → テンプレ記入
+Ex) *** (なんでもOK) b
+./Others/***/ に移動 → EDC-B.py を作成 → 開く → テンプレ記入
 COMMENTOUT
 
 make_files(){
@@ -59,13 +60,12 @@ make_files $1 $2 $3
 open $filename.py
 
 cat <<EOS > $filename.py
-    import sys
-    def ii(): return int(sys.stdin.readline())
-    def mi(): return map(int, sys.stdin.readline().split())
-    def li(): return list(map(int, sys.stdin.readline().split()))
-    def li2(N): return [list(map(int, sys.stdin.readline().split())) for i in range(N)]
-    def dp2(ini, i, j): return [[ini]*i for i2 in range(j)]
-    def dp3(ini, i, j, k): return [[[ini]*i for i2 in range(j)] for i3 in range(k)]
-    #import bisect #bisect.bisect_left(B, a)
-    #from collections import defaultdict #d = defaultdict(int) d[key] += value
-EOS
+import sys
+def ii(): return int(sys.stdin.readline())
+def mi(): return map(int, sys.stdin.readline().split())
+def li(): return list(map(int, sys.stdin.readline().split()))
+def li2(N): return [list(map(int, sys.stdin.readline().split())) for i in range(N)]
+def dp2(ini, i, j): return [[ini]*i for i2 in range(j)]
+def dp3(ini, i, j, k): return [[[ini]*i for i2 in range(j)] for i3 in range(k)]
+#import bisect #bisect.bisect_left(B, a)
+#from collections import defaultdict #d = defaultdict(int) d[key] += value
