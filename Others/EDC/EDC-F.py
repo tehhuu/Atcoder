@@ -13,7 +13,6 @@ S = input()
 T = input()
 ls = len(S)+1
 lt = len(T)+1
-
 dp = dp2(0, ls, lt)
 
 #moji = [['']*ls for i in range(lt)]
@@ -47,9 +46,9 @@ while i > 0 and j > 0:
 
 print(ans[::-1])
 
+
 '''
 ##TLE
-
 dp = [[[0, ''] for j in range(ls)] for i in range(lt)]
 
 for i in range(1, lt):
@@ -68,5 +67,24 @@ for i in range(1, lt):
 print(dp[lt-1][ls-1][1])
 '''
 
+'''
+##TLE
+dp = [['']*ls for i in range(lt)]
+
+for i in range(1, lt):
+    for j in range(1, ls):
+        if S[j-1]==T[i-1]:
+            dp[i][j] = dp[i-1][j-1] + S[j-1]
+            #moji[i][j] = moji[i-1][j-1] + S[j-1]
+        else:
+            if len(dp[i-1][j]) >= len(dp[i][j-1]):
+                dp[i][j] = dp[i-1][j]
+                #moji[i][j] = moji[i-1][j]
+            else:
+                dp[i][j] = dp[i][j-1]
+                #moji[i][j] = moji[i][j-1]
+#print(dp)
+print(dp[lt-1][ls-1])
+'''
 
         
