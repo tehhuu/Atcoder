@@ -61,6 +61,7 @@ open $filename.py
 
 cat <<EOS > $filename.py
 import sys
+sys.setrecursionlimit(10**8)
 def ii(): return int(sys.stdin.readline())
 def mi(): return map(int, sys.stdin.readline().split())
 def li(): return list(map(int, sys.stdin.readline().split()))

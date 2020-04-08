@@ -9,12 +9,18 @@ def dp3(ini, i, j, k): return [[[ini]*i for i2 in range(j)] for i3 in range(k)]
 #import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 
-A, B = mi()
+N = ii()
+H = li()
 
-if B > A:
-    A, B = B, A
+cnt = 0
 
-if A-1 >= B:
-    print(2*A-1)
-else:
-    print(A+B)
+for i in range(N):
+    flag = 1
+    for j in range(i):
+        if H[i] < H[j]:
+            flag = 0
+            break
+    if flag:
+        cnt += 1
+    
+print(cnt)

@@ -1,5 +1,4 @@
 import sys
-sys.setrecursionlimit(10**8)
 def ii(): return int(sys.stdin.readline())
 def mi(): return map(int, sys.stdin.readline().split())
 def li(): return list(map(int, sys.stdin.readline().split()))
@@ -9,12 +8,14 @@ def dp3(ini, i, j, k): return [[[ini]*i for i2 in range(j)] for i3 in range(k)]
 #import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 
-A, B = mi()
+N, K = mi()
 
-if B > A:
-    A, B = B, A
+cnt_n = N // K
+ans = cnt_n ** 3
 
-if A-1 >= B:
-    print(2*A-1)
-else:
-    print(A+B)
+if K % 2 == 0:
+    h_k = K // 2
+    if N >= h_k:
+        ans += ((N - h_k) // K + 1)**3
+
+print(ans)
