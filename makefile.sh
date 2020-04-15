@@ -70,8 +70,4 @@ def dp2(ini, i, j): return [[ini]*i for _ in range(j)]
 def dp3(ini, i, j, k): return [[[ini]*i for _ in range(j)] for _ in range(k)]
 #import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
-
-def main():
-
-if __name__ == "__main__":
-    main()
+#from itertools import accumulate #list(accumulate(A))
