@@ -9,17 +9,25 @@ def dp3(ini, i, j, k): return [[[ini]*i for _ in range(j)] for _ in range(k)]
 import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from itertools import accumulate #list(accumulate(A))
- 
-N = ii()
-A = sorted(li())
-half = A[-1]//2
- 
-ind = bisect.bisect_left(A, half)
- 
-if A[ind]!=half:
-    if ind > 0 and half - A[ind-1] < A[ind] - half:
-        ind -= 1
-if ind == N-1:
-    ind -= 1
- 
-print(A[-1], A[ind])
+
+def make_divisors(n):
+    divisors = []
+    for i in range(1, int(n**0.5)+1):
+        if n % i == 0:
+            divisors.append(i)
+            if i != n // i:
+                divisors.append(n//i)
+
+    divisors.sort()
+    return divisors
+
+N, M = mi()
+yakusu = make_divisors(M)
+lim = M // N
+ind = bisect.bisect_right(yakusu, lim)
+ans = 1
+
+print(yakusu[ind-1])
+
+    
+

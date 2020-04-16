@@ -9,17 +9,34 @@ def dp3(ini, i, j, k): return [[[ini]*i for _ in range(j)] for _ in range(k)]
 import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from itertools import accumulate #list(accumulate(A))
- 
-N = ii()
-A = sorted(li())
-half = A[-1]//2
- 
-ind = bisect.bisect_left(A, half)
- 
-if A[ind]!=half:
-    if ind > 0 and half - A[ind-1] < A[ind] - half:
-        ind -= 1
-if ind == N-1:
-    ind -= 1
- 
-print(A[-1], A[ind])
+
+## BFSで順番に列挙
+
+from collections import deque
+
+N, K = mi()
+D = li()
+r = [i for i in range(10) if i not in D]
+
+if r[0]==0:
+    que = deque(r[1:])
+else:
+    que = deque(r)
+
+# Nが一桁以下の場合
+for num in que:
+    if N <= num:
+        print(num)
+        exit()
+
+## BFSで順に列挙。N以上の数が出現したら出力して終了。
+i = 0
+while True:
+    base = que[i]*10
+    for num in r:
+        new = base + num
+        if new >= N:
+            print(new)
+            exit()
+        que.append(new)
+    i += 1
