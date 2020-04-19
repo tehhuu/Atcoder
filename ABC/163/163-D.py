@@ -1,16 +1,3 @@
-#!/bin/sh
-
-# ABCテンプレを作成
-
-read NAME
-
-mkdir $NAME
-cd $NAME
-
-for i in {A..E}
-do
-touch "$NAME-$i.py"
-cat <<EOS > $NAME-$i.py
 import sys
 sys.setrecursionlimit(10**8)
 def ii(): return int(sys.stdin.readline())
@@ -22,5 +9,19 @@ def dp3(ini, i, j, k): return [[[ini]*i for i2 in range(j)] for i3 in range(k)]
 #import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from itertools import accumulate #list(accumulate(A))
-EOS
-done
+
+N, K = mi()
+ma = mi = 0
+
+for i in range(K-1):
+    ma += N-i
+    mi += i
+
+ans = 0
+mod = 10**9+7
+for i in range(K-1, N+1):
+    ma += N-i
+    mi += i
+    ans = (ans + (ma-mi+1))%mod
+
+print(ans)
