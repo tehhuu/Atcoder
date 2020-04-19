@@ -58,6 +58,7 @@ def dfs(l, pos=0):
         global ans
         ans = max(ans, len_l)
     else:
+        print(l, pos)
         dfs(l, pos+1)
         l.append(pos)
         dfs(l, pos+1)
