@@ -51,5 +51,5 @@ for i in range(M):
     if not T.same(a, b):
         T.unite(a, b)
         path.append(c)
-print(path)
+
 print(sum(sorted(path[:N-K])))

@@ -10,6 +10,8 @@ def dp3(ini, i, j, k): return [[[ini]*i for _ in range(j)] for _ in range(k)]
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from itertools import accumulate #list(accumulate(A))
 
+## UnionFind
+
 class UnionFind:
     def __init__(self, n):
         self.d = [-1]*n
@@ -55,7 +57,6 @@ for i in range(M):
         if T.size(k) != N:
             break
     else:
-        print(i)
         cnt -= 1
 
 print(cnt)
