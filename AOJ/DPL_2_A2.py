@@ -13,7 +13,6 @@ def dp3(ini, i, j, k): return [[[ini]*i for _ in range(j)] for _ in range(k)]
 ## メモ化再帰-2
 N, E = mi()
 rel = [[] for _ in range(N)]
-#D = dp2(float('inf'), n, n)
 for i in range(E):
     s, t, c = mi()
     rel[t].append([s, c])
@@ -27,7 +26,7 @@ def rec(state, now):
     if state == B-1 and now == 0:
         dp[B-1][0] = 0
         return 0
-    res = float("inf")-1
+    res = float("inf")
     for r in rel[now]:
         t, c = r[0], r[1]
         if not state & (1<<t):
