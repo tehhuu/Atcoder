@@ -6,38 +6,29 @@ def li(): return list(map(int, sys.stdin.readline().split()))
 def li2(N): return [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
 def dp2(ini, i, j): return [[ini]*i for _ in range(j)]
 def dp3(ini, i, j, k): return [[[ini]*i for _ in range(j)] for _ in range(k)]
-import bisect #bisect.bisect_left(B, a)
+#import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #import itertools #list(accumulate(A))
-from collections import deque
+#from collections import deque
 
-## 準753数を列挙した後に選別
+## FlagをもたせたDFS
 
 N = ii()
-que = deque([33, 35, 37, 53, 55, 57, 73, 75, 77])
-ele = '357'
+ele = [3, 5, 7]
+l = []
 
-ind = 0
-while True:
-    num = que[ind] * 10
-    que.append(num + 3)
-    que.append(num + 5)
-    que.append(num + 7)
-    if len(str(num)) >= 10:
-        break
-    ind += 1
+def dfs(num, flag):
+    if num > N:
+        return 
+    if flag == 7:
+        l.append(num)
+    num *= 10
+    for i, e in enumerate(ele):
+        dfs(num+e, flag | 1<<i)
 
-ind = bisect.bisect_right(que, N)
+dfs(0, 0)
+print(len(l))
 
-cnt = 0
-for i in range(ind):
-    tmp = str(que[i])
-    for e in ele:
-        if e not in tmp:
-            cnt += 1
-            break
-
-print(ind - cnt)
 
 
 
