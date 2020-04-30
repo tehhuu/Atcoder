@@ -21,6 +21,7 @@ def dp2(ini, i, j): return [[ini]*i for i2 in range(j)]
 def dp3(ini, i, j, k): return [[[ini]*i for i2 in range(j)] for i3 in range(k)]
 #import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
+#from collections import Counter # a = Counter(A).most_common()
 #from itertools import accumulate #list(accumulate(A))
 EOS
 done
