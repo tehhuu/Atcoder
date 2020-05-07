@@ -12,16 +12,18 @@ def dp3(ini, i, j, k): return [[[ini]*i for i2 in range(j)] for i3 in range(k)]
 #from itertools import accumulate #list(accumulate(A))
 
 N = ii()
-
+ 
 table = dp2(0, 10, 10)
-
+ 
 for i in range(1, N+1):
     head = int(str(i)[0])
     tail = int(str(i)[-1])
     table[head][tail] += 1
-
+    
 cnt = 0
 for i in range(10):
     for j in range(10):
         cnt += table[i][j] * table[j][i]
+
+ 
 print(cnt)

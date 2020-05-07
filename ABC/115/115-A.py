@@ -20,4 +20,4 @@ if D == 24:
 if D == 23:
     print('Christmas Eve Eve')
 if D == 22:
-    print('Christmas Eve　Eve Eve')
+    print('Christmas Eve Eve Eve')

@@ -10,10 +10,10 @@ def dp3(ini, i, j, k): return [[[ini]*i for i2 in range(j)] for i3 in range(k)]
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from collections import Counter # a = Counter(A).most_common()
 #from itertools import accumulate #list(accumulate(A))
-
+ 
 N = ii()
 A = li()
-
+ 
 min_a = float('inf')
 
 cnt = 0
