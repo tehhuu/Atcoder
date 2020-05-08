@@ -10,32 +10,14 @@ def dp3(ini, i, j, k): return [[[ini]*i for _ in range(j)] for _ in range(k)]
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from itertools import accumulate #list(accumulate(A))
 
-N, K = mi()
-S = input()
+N = ii()
 
-inds = [[0, 0]]
-flag = 0
-s = 0
-for i in range(N):
-    if S[i] == '0':
-        if not flag:
-            flag = 1
-            inds.append([s, i-1])
-    else:
-        if flag:
-            s = i
-        flag = 0
-if flag:
-    inds.append([N-1, N-1])
-if not flag:
-    inds.append([s, N-1])
+A = [0] * (N+1)
 
-l_inds = len(inds)
-wa = 0
-if K >= l_inds-1:
-    print(N)
-    exit()
-for i in range(l_inds-K):
-    wa = max(inds[i+K][1] - inds[i][0] + 1, wa)
+A[0] = 2
+A[1] = 1
 
-print(wa)
+for i in range(2, N+1):
+    A[i] = A[i-1] + A[i-2]
+
+print(A[N])
