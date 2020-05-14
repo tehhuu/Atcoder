@@ -19,11 +19,12 @@ make_files(){
     if [ $dir = 'ABC' ]
     then
         cd $dir
-        if [ ! -d $2 ]
+        sub_dir="00$2"
+        if [ ! -d ${sub_dir: -3} ]
         then
-            mkdir $2
+            mkdir ${sub_dir: -3}
         fi
-        cd $2
+        cd $sub_dir
         filename=$2
         filename+='-'
         filename+=`echo | tr '[a-z]' '[A-Z]' <<< $3`
