@@ -3,7 +3,7 @@
 << COMMENTOUT
 source makefile.sh $1 $2 $3
 Ex)abc 13 b
-./ABC/13 に移動 → 13-B.py を作成 → 開く → テンプレ記入
+./ABC/013 に移動 → 13-B.py を作成 → 開く → テンプレ記入
 Ex) arc 13 b
 ./ARC/ARC13 に移動 → ARC13-B.py を作成 → 開く → テンプレ記入
 Ex) agc 13 b
