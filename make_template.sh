@@ -20,9 +20,10 @@ make_files(){
     then
         cd $dir
         sub_dir="00$2"
-        if [ ! -d ${sub_dir: -3} ]
+        sub_dir=${sub_dir: -3}
+        if [ ! -d $sub_dir ]
         then
-            mkdir ${sub_dir: -3}
+            mkdir $sub_dir
         fi
         cd $sub_dir
         filename=$2
