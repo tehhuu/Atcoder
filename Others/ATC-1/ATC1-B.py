@@ -30,15 +30,11 @@ class Unionfind:
     def size(self, x):
         return (-1) * self.d[self.find(x)]
 
-#N, M = map(int, sys.stdin.readline().split())
-#print(N, M)
-
 N, Q = map(int, input().split())
 
 uf = Unionfind(N)
 
 for i in range(Q):
-    #p, a, b = map(int, input().split())
     p, a, b = map(int, sys.stdin.readline().split())
     if p==0:
         uf.unite(a, b)
