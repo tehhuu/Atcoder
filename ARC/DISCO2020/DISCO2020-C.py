@@ -18,7 +18,6 @@ for i in range(H):
     l[i] = sum([S[i][j] == '#' for j in range(W)])
 
 l = list(accumulate(l))
-#print(l)
 
 ans = dp2(0, W, H)
 num = 1
@@ -39,7 +38,6 @@ for i in reversed(range(H)):
         for j in range(W):
             ans[i][j] = ans[i+1][j]
 
-#print(ans)
 for i in range(H):
     for j in range(W):
         print(ans[i][j], end='')
