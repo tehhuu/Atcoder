@@ -52,8 +52,9 @@ if 0 in A:
     exit()
 ans = 1
 for num in A:
-    print(ans, 10**18 / num, 10**18//num)
-    if ans < (10**18+1) / num or ans == 10**18//num:
+    #print(ans, 10**18 / num, 10**18//num)
+    #if ans < (10**18+1) / num or ans == 10**18//num:
+    if ans <= 10**18//num:
         ans *= num
     else:
         print(-1)
