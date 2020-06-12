@@ -5,38 +5,48 @@ def mi(): return map(int, sys.stdin.readline().split())
 def li(): return list(map(int, sys.stdin.readline().split()))
 def li2(N): return [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
 def dp2(ini, i, j): return [[ini]*i for _ in range(j)]
-import bisect #bisect.bisect_left(B, a)
+#import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from collections import Counter # a = Counter(A).most_common()
 #from itertools import accumulate #list(accumulate(A))
+import itertools
 
-A, B, Q = mi()
+N, *A = mi()
+L = [ii() for _ in range(N)]
+L_ = [L[i] for i in range(N)]
+N_ = N
 
-S = [ii() for _ in range(A)]
-T = [ii() for _ in range(B)]
+A = sorted(A)
+tmp = [0] * 3
+ans = float('inf')
 
-S_ = [S[0]] + S + [S[A-1]]
-T_ = [T[0]] + T + [T[B-1]]
+for k in itertools.product([0,1], repeat=N_):
+    N = sum(k)
+    if N < 3:
+        continue
+    L = []
+    for x in range(N_):
+        if k[x]:
+            L.append(L_[x] * k[x])
+    #L = [L_[x]*k[x] for x in range(N_)]
+    sum_l = sum(L)
 
-for _ in range(Q):
-    f = ii()
-    to_s = bisect.bisect_left(S, f)
-    to_t = bisect.bisect_left(T, f)
+    for i in range(1, N+1):
+        for koho_i in range(1, 2**i):
+            for koho_j in range(1, 2**i):
+                j = i
+                if koho_i & koho_j:
+                    continue
+                tmp[0] = sum([L[x]*min((koho_i & 1<<x), 1) for x in range(i)])
+                tmp[1] = sum([L[x]*min((koho_j & 1<<x), 1) for x in range(j)])
+                tmp[2] = sum_l - tmp[0] - tmp[1]
 
-    ans = float('inf')
+                if 0 in tmp:
+                    continue
 
-    for i in [S_[to_s], S_[to_s+1]]:
-        for j in [T_[to_t], T_[to_t+1]]:
-            tmp = min(abs(i - f), abs(j - f)) + abs(i - j)
-            ans = min(ans, tmp)
-    '''
-    ans = min(abs(S_[to_s+1] - f) + abs(S_[to_s+1] - T_[to_t+1]), float('inf'))
-    ans = min(abs(S_[to_s+1] - T_[to_t+1]) + abs(f - T_[to_t+1]), ans)
-    ans = min(abs(S_[to_s+1] - f) + abs(S_[to_s+1] - T_[to_t]), ans)
-    ans = min(abs(S_[to_s+1] - T_[to_t]) + abs(f - T_[to_t]), ans)
-    ans = min(abs(S_[to_s] - f) + abs(S_[to_s] - T_[to_t+1]), ans)
-    ans = min(abs(S_[to_s] - T_[to_t+1]) + abs(f - T_[to_t+1]), ans)
-    ans = min(abs(S_[to_s] - f) + abs(S_[to_s] - T_[to_t]), ans)
-    ans = min(abs(S_[to_s] - T_[to_t]) + abs(f - T_[to_t]), ans)
-    '''
-    print(ans)
+                tmp = sorted(tmp)
+                cost = (N-3) * 10 + sum([abs(tmp[x]-A[x]) for x in range(3)])
+
+                ans = min(ans, cost)
+
+print(ans)
