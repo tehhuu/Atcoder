@@ -18,10 +18,22 @@ def gcd(a, b):
     r = a % b
     return gcd(b, r)
 
-N, S = mi()
-X = li()
-ans = abs(S - X[0])
-for i in range(1, N):
-    ans = gcd(ans, abs(S - X[i]))
+N = ii()
+A = li()
+
+forward = [0]*(N+1)
+backward = [0]*(N+1)
+
+forward[0] = 0
+for i in range(1, N+1):
+    forward[i] = gcd(A[i-1], forward[i-1])
+
+backward[0] = 0
+for i in reversed(range(1, N+1)):
+    backward[N+1-i] = gcd(A[i-1], backward[N-i])
+
+ans = 0
+for i in range(N):
+    ans = max(ans, gcd(forward[i], backward[N-1-i]))
 
 print(ans)
