@@ -23,7 +23,6 @@ for i in range(N):
         his.append(C[ind])
         if ind == i:
             his = list(accumulate(his))
-            #print(his)
             L = len(his)
             if K > L:
                 if his[-1] > 0:
