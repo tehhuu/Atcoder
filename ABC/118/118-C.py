@@ -9,15 +9,22 @@ def dp2(ini, i, j): return [[ini]*i for _ in range(j)]
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from collections import Counter # a = Counter(A).most_common()
 #from itertools import accumulate #list(accumulate(A))
+from functools import reduce
 
-N, M = mi()
-X = sorted(li())
- 
-sa = []
- 
-for i in range(1, M):
-    sa.append(X[i]- X[i-1])
- 
-sa = sorted(sa)
-#print(sa)
-print(sum(sa[:max(M-N, 0)]))
+# 0がある場合はもう片方を出力
+def gcd(a, b):  
+    if a < b:
+        a, b = b, a
+    if b == 0:
+        return a
+    r = a % b
+    return gcd(b, r)
+
+def gcd_list(numbers):
+    return reduce(gcd, numbers)
+    
+
+N = ii()
+A = li()
+
+print(gcd_list(A))

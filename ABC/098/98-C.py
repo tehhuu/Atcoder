@@ -8,16 +8,23 @@ def dp2(ini, i, j): return [[ini]*i for _ in range(j)]
 #import bisect #bisect.bisect_left(B, a)
 #from collections import defaultdict #d = defaultdict(int) d[key] += value
 #from collections import Counter # a = Counter(A).most_common()
-#from itertools import accumulate #list(accumulate(A))
+from itertools import accumulate #list(accumulate(A))
 
-N, M = mi()
-X = sorted(li())
- 
-sa = []
- 
-for i in range(1, M):
-    sa.append(X[i]- X[i-1])
- 
-sa = sorted(sa)
-#print(sa)
-print(sum(sa[:max(M-N, 0)]))
+N = ii()
+S = input()
+cnt = [0] * N
+
+for i in range(N):
+    if S[i] == 'W':
+        cnt[i] = 1
+
+cnt = list(accumulate(cnt))
+ans = N
+
+for i in range(N):
+    if S[i] == 'E':
+        ans = min(ans, cnt[i] + (N-1-i)-(cnt[-1]-cnt[i]))
+    else:
+        ans = min(ans, i+1-cnt[i] + (N-1-i)-(cnt[-1]-cnt[i]))
+
+print(ans)

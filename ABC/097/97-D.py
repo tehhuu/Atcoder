@@ -10,43 +10,51 @@ def dp2(ini, i, j): return [[ini]*i for _ in range(j)]
 #from collections import Counter # a = Counter(A).most_common()
 #from itertools import accumulate #list(accumulate(A))
 
+class UnionFind:
+    def __init__(self, n):
+        self.d = [-1]*n
+    
+    def find(self, x):
+        if self.d[x] < 0:
+            return x
+        else:
+            self.d[x] = self.find(self.d[x])
+            return self.find(self.d[x])
+    
+    def unite(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+        if x==y:
+            return False
+        if self.d[x] > self.d[y]:
+            x, y = y, x
+        self.d[x] += self.d[y]
+        self.d[y] = x
+        return True
+    
+    def same(self, x, y):
+        if self.find(x)==self.find(y):
+            return True
+        return False
+    
+    def size(self, x):
+        return (-1) * self.d[self.find(x)]
+
 N, M = mi()
-A = [10**5+1] + li()
-XY = li2(M)
+P = li()
+G = UnionFind(N)
+ans = 0
 
-flag = [A[i] == i for i in range(N+1)]
-rel = [[] for _ in range(N+1)]
+for i in range(M):
+    x, y = mi()
+    G.unite(x-1, y-1)
+    
+for i in range(N):
+    if G.same(P[i]-1, i):
+        ans += 1
 
-for x, y in XY:
-    if y in rel[x]:
-        continue
-    for num in rel[x]:
-        if num not in rel[y]:
-            rel[y].append(num)
-            rel[num].append(y)
-    for num in rel[y]:
-        if num not in rel[x]:
-            rel[x].append(num)
-            rel[num].append(x)
-    rel[x].append(y)
-    rel[y].append(x)
+print(ans)
+    
 
-print(flag)
-print(rel)
 
-for i in range(1, N):
-    for j in rel[i]:
-        if flag[i] or flag[j]:
-            continue
-        if A[j] == i or A[i] == j:
-            tmp = A[i]
-            A[i] = A[j]
-            A[j] = tmp
-            if A[i] == i:
-                flag[i] = 1
-            if A[j] == j:
-                flag[j] = 1
-
-print(flag)
-print(sum(flag))
 

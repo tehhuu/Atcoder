@@ -10,14 +10,12 @@ def dp2(ini, i, j): return [[ini]*i for _ in range(j)]
 #from collections import Counter # a = Counter(A).most_common()
 #from itertools import accumulate #list(accumulate(A))
 
-N, M = mi()
-X = sorted(li())
- 
-sa = []
- 
-for i in range(1, M):
-    sa.append(X[i]- X[i-1])
- 
-sa = sorted(sa)
-#print(sa)
-print(sum(sa[:max(M-N, 0)]))
+S = input()
+
+sa = float('inf')
+
+for i in range(len(S)-2):
+    if abs(int(S[i:i+3]) - 753) < sa:
+        sa = abs(int(S[i:i+3]) - 753)
+
+print(sa)

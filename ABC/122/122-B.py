@@ -10,14 +10,16 @@ def dp2(ini, i, j): return [[ini]*i for _ in range(j)]
 #from collections import Counter # a = Counter(A).most_common()
 #from itertools import accumulate #list(accumulate(A))
 
-N, M = mi()
-X = sorted(li())
- 
-sa = []
- 
-for i in range(1, M):
-    sa.append(X[i]- X[i-1])
- 
-sa = sorted(sa)
-#print(sa)
-print(sum(sa[:max(M-N, 0)]))
+S = input()
+
+cnt = 0
+ans = 0
+for char in S:
+    if char == 'A' or char == 'C' or char == 'G' or char == 'T':
+        cnt += 1
+    else:
+        ans = max(cnt, ans)
+        cnt = 0
+
+ans = max(ans, cnt)
+print(ans)
